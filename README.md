@@ -17,26 +17,76 @@ Troisième partie concernant l’exportation du rapport, où l’on veut exporte
 
 ### I/ Comment faire marcher l’application :
 
-- Etape Installation :
+- #### Etape Installation :
+
+- Etape 1 : Sur le Github télécharger le projet (dézipper si besoin).
+![téléchargement](images_readme/img0.png)
+
+- Etape 2 (Optionnel) : déplacer le dossier téléchargé dans vos fichier application, ou vous voulez.
 
 
+- #### Etape Ouverture de l’application 
 
-En local :
-- Etape 1 : Ouverture du dossier projet.
+<strong>En local :</strong>
 
-- Etape 2 : ouverture du terminal du dossier ( clic droit + nouveau terminal du dossier)
+- Etape 1 : Ouverture du dossier projet. 
+![ouverture](images_readme/img1.png)
+
+Etape 2 : ouverture du terminal du dossier ( clic droit sur django-web-app + nouveau terminal du dossier )
+![ouverture terminal](images_readme/img2.png)
+
  
-- Etape 3 : (écrire  le script pour lancer le serveur web en local)
+ note : important de se mettre dans le fichier django-web-app sinon le script en bas ne marche pas, si vous avez quelques 
+ connaissances cela ne devraient pas vous poser de problèmes. 
  
-- Etape 5 : aller sur la page :  port d’écoute + /importation/ ici : http://127.0.0.1:8000/importation/
- 
-- Etape 6 : utiliser l’outil : cliquer sur choisir le fichier  
-- Etape 7 : cliquer sur upload (redirection sur la page Analyse)
-- Etape 8 : Etape analyse de résultat changement de graphique, ajout de texte.   
+- Etape 3 : (écrire  le script pour lancer le serveur web en local) 
+
+```shell
+
+source env/bin/activate
+cd msforms
+python3 manage.py runserver
+
+```
+![ouverture terminal](images_readme/img3.png)
+
+- Etape 4 : aller sur la page :  port d’écoute + /importation/ ici cliquer sur l'url: http://127.0.0.1:8000/importation/
+
+![ouverture terminal](images_readme/img4.png)
+
+ note : si vous cliquez dessus sans avoir lancé l'application ne vous attendez pas a voir quelque chose
+
+
+- #### Etape Utilisation de l’application 
+
+- Etape 1 : utiliser l’outil : cliquer sur le bouton choisir le fichier 
+![ouverture terminal](images_readme/img4.png)
+
+Une fenêtre apparait, choisir le fichier a uploader :
+![ouverture terminal](images_readme/img5.png)
   
-- Etape 9 : cliquer sur Exportation des résultats : choisir le format puis exporter , avec aperçu ou télécharger.
-  
+ Cliquer sur Transférer dans la fenêtre.
  
+- Etape 2 : cliquer sur upload (redirection sur la page Analyse)
+
+- Etape 3 : Etape analyse de résultat changement de graphique, et ajout de texte.  
+![ouverture terminal](images_readme/img6.png)
+![ouverture terminal](images_readme/img7.png)
+![ouverture terminal](images_readme/img8.png)
+
+
+note : on peut changer le type de graphique avec le menu déroulant, le télécharger uniquement le graphique associé a une question.
+
+- Etape 4 : cliquer sur Exportation des résultats : choisir le format puis exporter , avec aperçu ou télécharger.
+![ouverture terminal](images_readme/img9.png)
+ 
+ 
+ -Etape 5 : Résultat des téléchargement pdf et word.
+![ouverture terminal](images_readme/img10.png)
+
+
+<strong>Après déploiement :</strong>
+
 Après déploiement, il y a juste besoin d’aller sur la page web associer à l’application. Et utiliser l’application comme à l’étape 6.
 
 
@@ -56,10 +106,17 @@ Maintenant on peut passer à la déco et s’amuser avec le code pour rendre jol
 Aussi le rapport généré peut être amélioré, par une typographique choisit, un filigrane ajouté. 
 
 L'application web présentée ici présente de nombreuses perspectives d'amélioration. En effet, il est toujours possible de perfectionner une application informatique, et plusieurs améliorations pourraient être apportées.
-La correction des bugs constitue également une priorité pour améliorer l'application. Un bug surprenant est la superposition des graphiques, qui peut survenir lorsqu'on change l'affichage pour un bar-plot, et qui entraîne un changement de graphique non voulu. Il serait possible de supprimer le graphique de la liste des graphiques lorsqu'on change de type d'affichage pour résoudre ce problème. La version 2 aura ces buggs corrigés, et une version 2 sera uploadé dans quelques mois. 
+La correction des bugs constitue également une priorité pour améliorer l'application. Un bug surprenant est la superposition des graphiques, qui peut survenir lorsqu'on change l'affichage pour un bar-plot, et qui entraîne un changement de graphique non voulu. Il serait possible de supprimer le graphique de la liste des graphiques lorsqu'on change de type d'affichage pour résoudre ce problème. La version 2 aura ces bugs corrigés, et une version 2 sera uploadé dans quelques mois. 
 
 Par ailleurs, plusieurs nouvelles fonctionnalités pourraient être ajoutées pour améliorer l'application. Il serait notamment intéressant d'intégrer de nouveaux types de graphiques, en plus des pie-charts et des bar-charts. Des options de personnalisation pourraient également être mises en place, comme le choix de la couleur ou du nombre de mots affichés. Un bouton pour supprimer les paragraphes, les questions ou les graphiques qui ne sont pas pertinents serait également utile. Enfin, déployer l'application web pour la rendre plus facilement accessible depuis une URL serait un élément clé pour améliorer l'expérience utilisateur.
 
 En somme, il existe de nombreuses pistes d'amélioration pour cette application web. En optimisant l'expérience utilisateur et en ajoutant de nouvelles fonctionnalités, cette application pourrait répondre encore mieux aux besoins de ses utilisateurs
 
+### V/ Conclusion :
+
+Ce projet s'est avéré être très intéressant car il a permis de développer de nouvelles compétences, notamment dans le domaine du développement d'application web. Toutefois, il a été extrêmement difficile à réaliser, car il comporte des fonctionnalités avancées qui ne sont pas simples à mettre en place. En effet, les fonctionnalités d'importation et d'exportation sont particulièrement complexes, car elles impliquent l'intégration d'images et de graphiques chart.js dans le résultat final, ce qui est rarement vu dans les projets de ce genre. De plus, il est nécessaire de stocker le texte saisi par l'utilisateur afin de l'exporter dans le PDF avec les commentaires.
+De plus, la partie visualisation est également très difficile, car il est rare de trouver des projets dans lesquels la source de données n'est pas statique. Il est donc nécessaire de développer en généralisant par rapport à un fichier que l'on ne possède pas. Il est également nécessaire d'intégrer des graphiques, de changer les graphiques sur la page et de générer automatiquement la page, qui peut varier en fonction de la source de données. Tout cela ajoute une complexité supplémentaire à la réalisation du projet.
+
+Enfin la partie exportation en pdf a été la partie la plus difficile. Car on doit créer un PDF dynamique et qui intègrent des images et surtout des canvas chart.js. Car on a beaucoup de contraintes associées qui limite la façon de coder. 
+Puis il y a aussi l’exportation en Word. 
 
