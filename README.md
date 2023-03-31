@@ -99,7 +99,7 @@ Après déploiement, il y a juste besoin d’aller sur la page web associer à l
 
 ### II/ Fonctionnement plus en détail du code :
 
-Pour des explications détaillé sur le code voir le rapport technique : [rapport technique](https://github.com/Jeremie2693/ProjetVisualisationFormsApp/blob/main/CDC:Rapport/Rapport%20Projet%20Rapport%20Forms.docx)
+Pour des explications détaillé sur le code voir le rapport technique : [rapport technique](https://github.com/Jeremie2693/ProjetVisualisationFormsApp/blob/main/CDC:Rapport/CDC_Projet_rapport_forms_Berrebi_jérémie.pdf))
 
 
 ### III/ Perspectives 
