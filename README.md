@@ -39,10 +39,9 @@ Etape 2 : ouverture du terminal du dossier ( clic droit sur django-web-app + nou
  note : important de se mettre dans le fichier django-web-app sinon le script en bas ne marche pas, si vous avez quelques 
  connaissances cela ne devraient pas vous poser de problèmes. 
  
-- Etape 3 : (écrire  le script pour lancer le serveur web en local) 
+- Etape 3 : (écrire ou copier-coller le script pour lancer le serveur web en local) 
 
 ```shell
-
 source env/bin/activate
 cd msforms
 python3 manage.py runserver
@@ -73,6 +72,7 @@ Une fenêtre apparait, choisir le fichier a uploader :
 ![ouverture terminal](images_readme/img6.png)
 ![ouverture terminal](images_readme/img7.png)
 ![ouverture terminal](images_readme/img8.png)
+![ouverture terminal](images_readme/img9.png)
 
 
 note : on peut changer le type de graphique avec le menu déroulant, le télécharger uniquement le graphique associé a une question.
@@ -83,13 +83,13 @@ note : on peut changer le type de graphique avec le menu déroulant, le téléch
 - Etape 5 : allez sur la page Exportation des résultats en cliquant sur Exportation des résultats : 
 choisir le format puis exporter , avec aperçu ou télécharger.
 
-![ouverture terminal](images_readme/img9.png)
+![ouverture terminal](images_readme/img10.png)
  
  
  note : il est conseillé de cliquer sur apercu avant de cliquer sur téléchargé, pour bien téléchargé le fichier.
  
  -Etape 5 : Résultat des téléchargement pdf et word.
-![ouverture terminal](images_readme/img10.png)
+![ouverture terminal](images_readme/img11.png)
 
 
 <strong>Après déploiement :</strong>
