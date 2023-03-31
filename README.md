@@ -77,9 +77,16 @@ Une fenêtre apparait, choisir le fichier a uploader :
 
 note : on peut changer le type de graphique avec le menu déroulant, le télécharger uniquement le graphique associé a une question.
 
-- Etape 4 : cliquer sur Exportation des résultats : choisir le format puis exporter , avec aperçu ou télécharger.
+
+- Etape 4 <strong>[Important]</strong> : cliquer sur le bouton sauvegarder de la page si vous voulez sauvegarder le texte et la séléction des images dans le rapport pdf généré. 
+
+- Etape 5 : allez sur la page Exportation des résultats en cliquant sur Exportation des résultats : 
+choisir le format puis exporter , avec aperçu ou télécharger.
+
 ![ouverture terminal](images_readme/img9.png)
  
+ 
+ note : il est conseillé de cliquer sur apercu avant de cliquer sur téléchargé, pour bien téléchargé le fichier.
  
  -Etape 5 : Résultat des téléchargement pdf et word.
 ![ouverture terminal](images_readme/img10.png)
