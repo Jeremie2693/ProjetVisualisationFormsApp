@@ -78,7 +78,7 @@ Une fenêtre apparait, choisir le fichier a uploader :
 note : on peut changer le type de graphique avec le menu déroulant, le télécharger uniquement le graphique associé a une question.
 
 
-- Etape 4 <strong>[Important]</strong> : cliquer sur le bouton sauvegarder de la page si vous voulez sauvegarder le texte et la séléction des images dans le rapport pdf généré. 
+- Etape 4 <strong>[Important]</strong> : cliquer sur le bouton sauvegarder de la page si vous voulez sauvegarder le texte et la sélection des images dans le rapport pdf généré. 
 
 - Etape 5 : allez sur la page Exportation des résultats en cliquant sur Exportation des résultats : 
 choisir le format puis exporter , avec aperçu ou télécharger.
@@ -94,7 +94,7 @@ choisir le format puis exporter , avec aperçu ou télécharger.
 
 <strong>Après déploiement :</strong>
 
-Après déploiement, il y a juste besoin d’aller sur la page web associer à l’application. Et utiliser l’application comme à l’étape 6.
+Après déploiement, il y a juste besoin d’aller sur la page web associer à l’application. Et utiliser l’application comme à l’étape utilisation.
 
 
 ### II/ Fonctionnement plus en détail du code :
