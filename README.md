@@ -86,7 +86,8 @@ choisir le format puis exporter , avec aperçu ou télécharger.
 ![ouverture terminal](images_readme/img10.png)
  
  
- note : il est conseillé de cliquer sur apercu avant de cliquer sur téléchargé, pour bien téléchargé le fichier.
+ note : il est conseillé de cliquer sur apercu avant de cliquer sur téléchargé, pour bien téléchargé le fichier. 
+ L'apercu prend 40secondes pour des forms long de 54 questions, a titre d'exemples, cela dépend du nombre de question. 
  
  -Etape 5 : Résultat des téléchargement pdf et word.
 ![ouverture terminal](images_readme/img11.png)
