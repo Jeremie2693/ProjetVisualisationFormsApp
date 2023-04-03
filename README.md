@@ -103,18 +103,41 @@ Etape 1 : téléchargement du projet sur Github puis déziper et placer ou vous 
 
 Etape 2 : se placer dans le dossier  django-web-app, copier le chemin (exemple : Path =C:\Users\... )
 
-Etape 3 : Ouvrez une fenêtre PowerShell en tant qu'administrateur (admin) en appuyant sur la touche "Windows + X" et en sélectionnant "Windows PowerShell" dans le menu.
+Etape 3 : Ouvrir un terminal ou une invite de commande, taper invite de commande
 
 Etape 4 :Tapez la commande suivante pour accéder au répertoire de l'environnement virtuel : copier-coller : cd + le Path
 exemple : 
 ```shell
 cd C:\Users\... (bien sur ce n'est pas ce path pour vous)
 ```
-Etape 5 : copier coller ce script
+Etape 5 :  créer l'environement copier coller ce script
 ```shell
-env\bin\Activate.ps1
+python -m venv env
+
+```
+Etape 6 : activer l'environement copier coller ce script
+```shell
+env\Scripts\activate
+```
+Etape 7 : Installer les requirements copier coller ce script
+```shell
+pip install --upgrade pip
+pip install -r requirements.txt
+
 ```
 
+Etape 8 : aller dans le bon dossier : copier coller ce script
+```shell
+cd msforms
+```
+
+Etape 9 : Lancer le serveur copier coller ce script
+```shell
+python manage.py runserver
+```
+
+
+<strong>Lancer l'application sur Window :</strong>
 
 ### II/ Fonctionnement plus en détail du code :
 
