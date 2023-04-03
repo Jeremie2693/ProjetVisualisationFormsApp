@@ -29,13 +29,12 @@ Troisième partie concernant l’exportation du rapport, où l’on veut exporte
 
 <strong>En local :</strong>
 
-- Etape 1 : Ouverture du dossier projet. 
+- Etape 1 : Ouverture du dossier projet. Aller au dossier django-web-app.
 ![ouverture](images_readme/img1.png)
 
 Etape 2 : ouverture du terminal du dossier ( clic droit sur django-web-app + nouveau terminal du dossier )
 ![ouverture terminal](images_readme/img2.png)
 
- 
  note : important de se mettre dans le fichier django-web-app sinon le script en bas ne marche pas, si vous avez quelques 
  connaissances cela ne devraient pas vous poser de problèmes. 
  
@@ -96,6 +95,25 @@ choisir le format puis exporter , avec aperçu ou télécharger.
 <strong>Après déploiement :</strong>
 
 Après déploiement, il y a juste besoin d’aller sur la page web associer à l’application. Et utiliser l’application comme à l’étape utilisation.
+
+
+<strong>Installation version Window :</strong>
+
+Etape 1 : téléchargement du projet sur Github puis déziper et placer ou vous le souhaiter.
+
+Etape 2 : se placer dans le dossier  django-web-app, copier le chemin (exemple : Path =C:\Users\... )
+
+Etape 3 : Ouvrez une fenêtre PowerShell en tant qu'administrateur (admin) en appuyant sur la touche "Windows + X" et en sélectionnant "Windows PowerShell" dans le menu.
+
+Etape 4 :Tapez la commande suivante pour accéder au répertoire de l'environnement virtuel : copier-coller : cd + le Path
+exemple : 
+```shell
+cd C:\Users\... (bien sur ce n'est pas ce path pour vous)
+```
+Etape 5 : copier coller ce script
+```shell
+env\bin\Activate.ps1
+```
 
 
 ### II/ Fonctionnement plus en détail du code :
