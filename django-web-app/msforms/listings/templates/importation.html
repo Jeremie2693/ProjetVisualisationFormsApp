@@ -10,7 +10,7 @@
     {%csrf_token%}
     {{form}}
     <input type="file" name="document" id="document" required="required">
-    <button id="submit" class="btn-primary" onclick="sessionStorage.clear();">Upload</button>
+    <button id="submit" class="btn-primary" onclick="localStorage.clear();">Upload</button>
 </form>
 
 {% endblock %}

@@ -215,7 +215,9 @@ def not_upload(request):
                 textes_commentaires =data_request.get('textes_commentaires')
 
                 #transformer en liste
-                graph_urls=list(eval(graph_urls))
+                graph_urls=list(graph_urls)
+                graph_urls=[url.replace("\"","") for url in graph_urls]
+                #print(graph_urls)
                 textes_commentaires=list(eval(textes_commentaires))
 
                 graph_url_name_list = []

@@ -46,7 +46,7 @@
                     div.removeChild(editWrapper);
                     div.appendChild(editButton);
                     div.appendChild(deleteButton);
-                    sessionStorage.setItem('comments-' + columnNumber, textarea.value);
+                    localStorage.setItem('comments-' + columnNumber, textarea.value);
 
                   });
                   editWrapper.appendChild(saveButton);
@@ -68,7 +68,7 @@
               button.onclick = () => {
                 createParagraph(textarea.value);
                 div.removeChild(wrapper);
-                sessionStorage.setItem('comments-' + columnNumber, textarea.value);
+                localStorage.setItem('comments-' + columnNumber, textarea.value);
 
               }
               const wrapper = document.createElement("div");

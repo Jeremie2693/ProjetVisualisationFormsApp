@@ -197,3 +197,4 @@ def plot_cloud(list_sentence,param,max = 1000,color="white", title_size=16):
     filepath = "listings/static/listings/images/{}".format(filename)
 
     plt.savefig(filepath,bbox_inches="tight")
+    plt.close()

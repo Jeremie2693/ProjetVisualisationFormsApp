@@ -69,7 +69,7 @@
   } else if (chartType === 'bar') {
     currentChart = createChart(column_number,chartType);
   }
-  sessionStorage.setItem('chart-type-' + column_number, chartType);
+  localStorage.setItem('chart-type-' + column_number, chartType);
 
 }
 //charts[column_number - 1].detroy();
@@ -162,26 +162,10 @@ let currentChart = new Chart(graphCanvas, {
   },
   options: options
 });
-  sessionStorage.setItem(`graph-${column_number}`,currentChart );
+  //localStorage.setItem(`graph-${column_number}`,currentChart );
 
 }
 
-function renderchart(column_number){
-  //let chart=sessionStorage.getItem(`graph-${column_number}`);
-  console.log(chart)
-  var chart = charts[column_number - 1];
-  if (chart!=null){
-    
-    chart.destroy();
-    charts.update;
-  }
-
-  console.log(chart)
-
-
-  sessionStorage.setItem('chart-type-' + column_number, chartType);
-
-}
 </script>
 
 
@@ -261,7 +245,7 @@ function addComment(columnNumber, commentText) {
       div.removeChild(editWrapper);
       div.appendChild(editButton);
       div.appendChild(deleteButton);
-      sessionStorage.setItem(`comments-${columnNumber}`, textarea.value);
+      localStorage.setItem(`comments-${columnNumber}`, textarea.value);
     });
     editWrapper.appendChild(saveButton);
     div.appendChild(editWrapper);
@@ -271,7 +255,7 @@ function addComment(columnNumber, commentText) {
     div.removeChild(p);
     div.removeChild(editButton);
     div.removeChild(deleteButton);
-    sessionStorage.removeItem(`comments-${columnNumber}`);
+    localStorage.removeItem(`comments-${columnNumber}`);
   });
 }
 
@@ -284,7 +268,7 @@ window.onload = function() {
     for (var i = 1; i <= {{ list_zip_columns|length }}; i++) {
 
       // remettre le texte 
-      const commentText = sessionStorage.getItem(`comments-${i}`);
+      const commentText = localStorage.getItem(`comments-${i}`);
       if (commentText) {
         addComment(i, commentText);
       }
@@ -293,7 +277,7 @@ window.onload = function() {
       var canvas = document.getElementById('graph-' + i);
   
       // Get the saved chart type from session storage
-      var chartType = sessionStorage.getItem('chart-type-' + i);
+      var chartType = localStorage.getItem('chart-type-' + i);
 
       // Create the chart with the saved chart type
       var chart;
@@ -321,21 +305,25 @@ window.onload = function() {
 
 function saveSession() {
 
-  var graph_urls=[];
-  //Partie save les graphiques 
-  var charts_canvas = document.querySelectorAll('canvas');
+    var graph_urls=[];
+    //Partie save les graphiques 
+    var charts_canvas = document.querySelectorAll('canvas');
+    {% for index,column_number,column_name, bool_open in list_zip_columns%}
+      var graphCanvas = document.getElementById('graph-' + '{{ column_number}}');
+      URI = graphCanvas.toDataURL('image/png')
+      graph_urls.push(URI);
 
-  // Parcourir chaque graphique
-  for (let i = 1; i <= charts_canvas.length; i++) {
-    var graphCanvas = document.getElementById('graph-' + i);
-    URI = graphCanvas.toDataURL('image/png')
-    
-    graph_urls.push(URI);
-  }
-  //console.log(graph_urls);
-  sessionStorage.setItem('graph_urls', JSON.stringify(graph_urls)); // stocker la liste des URLs dans le stockage session
-  var graph_urls_test = JSON.parse(sessionStorage.getItem('graph_urls'));
-  console.log(graph_urls_test);
+      {% if not bool_open %}  
+        localStorage.setItem('graph_url_'+ '{{column_number}}', JSON.stringify(URI)); // stocker la liste des URLs dans le stockage local
+
+      {% else %}
+        localStorage.setItem('graph_url_'+ '{{column_number}}', JSON.stringify(" ")); 
+      {% endif %}
+
+    {% endfor %}
+
+  
+
 
   var sessionData = [];
   for (let i = 1; i <= charts_canvas.length; i++) {
@@ -345,7 +333,7 @@ function saveSession() {
     sessionData.push(comment);
   }
   console.log(sessionData);
-  sessionStorage.setItem("session_textes_commentaires", JSON.stringify(sessionData));
+  localStorage.setItem("session_textes_commentaires", JSON.stringify(sessionData));
 
 
 

@@ -24,9 +24,22 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     function previewGraphUrls() {
-        var graphUrls = sessionStorage.getItem('graph_urls');
+        //on récupère les urls graph que l'on trie car il ne sont pas ordoné dans lS.
+        var graphUrls = [];
+        for (let key in localStorage) {
+          if (key.startsWith("graph_url_")) {
+            let url = localStorage.getItem(key);
+            let number = parseInt(key.slice(10));
+            graphUrls.push({url: url, number: number});
+          }
+        }
+
+        graphUrls.sort((a, b) => a.number - b.number);
+
+        let sortedUrls = graphUrls.map(item => item.url);
+
         var exportFormat = $('#export-format').val();
-        var textes_commentaires = sessionStorage.getItem('session_textes_commentaires');
+        var textes_commentaires = localStorage.getItem('session_textes_commentaires');
 
         var csrf_token = $('input[name="csrfmiddlewaretoken"]').val();
 
@@ -39,7 +52,7 @@
                 'Content-Type': 'application/json'
             },
             data: JSON.stringify({
-                'graphUrls': graphUrls,
+                'graphUrls': sortedUrls,
                 'exportFormat': exportFormat,
                 'textes_commentaires':textes_commentaires,
             }),
@@ -61,8 +74,13 @@
 </script>
 <script>
   $(document).ready(function() {
-    var graph_urls = sessionStorage.getItem('graph_urls');
-    if (graph_urls ===null) {
+    var graph_url_bool;
+    for(let key in localStorage) {
+      if(key.startsWith("graph_url_")) {
+        graph_url_bool= true;
+        }
+    }
+    if (!graph_url_bool) {
       $('#download-btn a').attr('href', '#');
     } else {
       $('#export-format').change(function() {
@@ -79,9 +97,15 @@
 </script>
 
 <script>
-  var graph_urls = sessionStorage.getItem('graph_urls');
+  var graph_url_bool;
+
+  for(let key in localStorage) {
+    if(key.startsWith("graph_url_")) {
+        graph_url_bool= true;
+        }
+      }
   //console.log(graph_urls);
-  if (!graph_urls) {
+  if (!graph_url_bool) {
     var container = document.createElement("div");
     container.setAttribute("class", "container");
     container.setAttribute("style", "color: firebrick; margin-top: 20px");
