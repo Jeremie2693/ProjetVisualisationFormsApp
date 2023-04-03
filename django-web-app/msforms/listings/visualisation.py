@@ -8,6 +8,8 @@ import seaborn as sns
 import re
 from collections import Counter
 from nltk.corpus import stopwords
+import nltk
+nltk.download('stopwords')
 from wordcloud import WordCloud
 import os
 
