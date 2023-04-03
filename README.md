@@ -105,26 +105,27 @@ Pour des explications détaillé sur le code voir le rapport technique : [rappor
 
 ### III/ Perspectives 
 
- <strong>Le plus dur a été fait tout ce qui vient après c’est de la déco.</strong>
+ <strong>Le plus dur a été fait tout ce qui vient après c’est de la décoration.</strong>
+ 
+Les trois parties les plus difficiles du projet ont été réalisées, à savoir l'importation et le prétraitement des données, l'analyse et la génération de rendus en HTML, ainsi que l'exportation en PDF et Word. J'ai réussi à exporter et à générer un PDF dynamique et un document Word, ce qui a été une tâche très difficile, mais qui fonctionne désormais correctement.
 
-Les 3 parties les plus dur du projet ont été réaliser, à savoir, l’importation et le pré processing, l’analyse et le rendu en html et enfin l’exportation PDF et Word. 
-J’ai réussi à exporter et faire en sorte de générer un pdf dynamique et un word, ce qui a été une tache très dure, mais qui aujourd’hui marche. 
+Maintenant, nous pouvons passer à la décoration et nous amuser avec le code pour rendre l'application graphiquement plus attrayante, avec de meilleurs graphiques, des boutons plus esthétiques, etc. De plus, le rapport généré pourrait être amélioré en choisissant une typographie adaptée et en ajoutant un filigrane.
 
-Maintenant on peut passer à la déco et s’amuser avec le code pour rendre jolie l’application en termes de graphisme. Des graphiques plus beaux, des boutons plus beaux…
-Aussi le rapport généré peut être amélioré, par une typographique choisit, un filigrane ajouté. 
+L'application web présentée ici offre de nombreuses perspectives d'amélioration. En effet, il est toujours possible de perfectionner une application informatique, et plusieurs améliorations pourraient être apportées.
+La correction des bugs constitue également une priorité pour améliorer l'application. Un bug surprenant est la superposition des graphiques, qui peut survenir lorsqu'on change l'affichage pour un graphique à barres et qui entraîne un changement de graphique non voulu. Pour résoudre ce problème, il serait possible de supprimer le graphique de la liste des graphiques lorsqu'on change de type d'affichage. La version 2 corrigera ces bugs, et sera mise en ligne dans quelques mois.
 
-L'application web présentée ici présente de nombreuses perspectives d'amélioration. En effet, il est toujours possible de perfectionner une application informatique, et plusieurs améliorations pourraient être apportées.
-La correction des bugs constitue également une priorité pour améliorer l'application. Un bug surprenant est la superposition des graphiques, qui peut survenir lorsqu'on change l'affichage pour un bar-plot, et qui entraîne un changement de graphique non voulu. Il serait possible de supprimer le graphique de la liste des graphiques lorsqu'on change de type d'affichage pour résoudre ce problème. La version 2 aura ces bugs corrigés, et une version 2 sera uploadé dans quelques mois. 
+Par ailleurs, plusieurs nouvelles fonctionnalités pourraient être ajoutées pour améliorer l'application. Il serait notamment intéressant d'intégrer de nouveaux types de graphiques, en plus des diagrammes circulaires et des graphiques à barres. Des options de personnalisation pourraient également être mises en place, comme le choix de la couleur ou du nombre de mots affichés. Un bouton pour supprimer les paragraphes, les questions ou les graphiques qui ne sont pas pertinents serait également utile. Enfin, déployer l'application web pour la rendre plus facilement accessible depuis une URL serait un élément clé pour améliorer l'expérience utilisateur.
 
-Par ailleurs, plusieurs nouvelles fonctionnalités pourraient être ajoutées pour améliorer l'application. Il serait notamment intéressant d'intégrer de nouveaux types de graphiques, en plus des pie-charts et des bar-charts. Des options de personnalisation pourraient également être mises en place, comme le choix de la couleur ou du nombre de mots affichés. Un bouton pour supprimer les paragraphes, les questions ou les graphiques qui ne sont pas pertinents serait également utile. Enfin, déployer l'application web pour la rendre plus facilement accessible depuis une URL serait un élément clé pour améliorer l'expérience utilisateur.
+En somme, il existe de nombreuses pistes d'amélioration pour cette application web. En optimisant l'expérience utilisateur et en ajoutant de nouvelles fonctionnalités, cette application pourrait mieux répondre aux besoins de ses utilisateurs.
 
-En somme, il existe de nombreuses pistes d'amélioration pour cette application web. En optimisant l'expérience utilisateur et en ajoutant de nouvelles fonctionnalités, cette application pourrait répondre encore mieux aux besoins de ses utilisateurs
 
 ### V/ Conclusion :
 
-Ce projet s'est avéré être très intéressant car il a permis de développer de nouvelles compétences, notamment dans le domaine du développement d'application web. Toutefois, il a été extrêmement difficile à réaliser, car il comporte des fonctionnalités avancées qui ne sont pas simples à mettre en place. En effet, les fonctionnalités d'importation et d'exportation sont particulièrement complexes, car elles impliquent l'intégration d'images et de graphiques chart.js dans le résultat final, ce qui est rarement vu dans les projets de ce genre. De plus, il est nécessaire de stocker le texte saisi par l'utilisateur afin de l'exporter dans le PDF avec les commentaires.
+Ce projet s'est avéré être très intéressant car il a permis de développer de nouvelles compétences, notamment dans le domaine du développement d'applications web. Toutefois, il a été extrêmement difficile à réaliser, car il comporte des fonctionnalités avancées qui ne sont pas simples à mettre en place. En effet, les fonctionnalités d'importation et d'exportation sont particulièrement complexes, car elles impliquent l'intégration d'images et de graphiques chart.js dans le résultat final, ce qui est rarement vu dans les projets de ce genre. De plus, il est nécessaire de stocker le texte saisi par l'utilisateur afin de l'exporter dans le PDF avec les commentaires.
+
 De plus, la partie visualisation est également très difficile, car il est rare de trouver des projets dans lesquels la source de données n'est pas statique. Il est donc nécessaire de développer en généralisant par rapport à un fichier que l'on ne possède pas. Il est également nécessaire d'intégrer des graphiques, de changer les graphiques sur la page et de générer automatiquement la page, qui peut varier en fonction de la source de données. Tout cela ajoute une complexité supplémentaire à la réalisation du projet.
 
-Enfin la partie exportation en pdf a été la partie la plus difficile. Car on doit créer un PDF dynamique et qui intègrent des images et surtout des canvas chart.js. Car on a beaucoup de contraintes associées qui limite la façon de coder. 
-Puis il y a aussi l’exportation en Word. 
+
+Enfin la partie exportation en pdf a été la partie la plus difficile. Car on doit créer un PDF dynamique et qui intègre des images et surtout des Canvas chart.js. Car on a beaucoup de contraintes associées qui limitent la façon de coder. Puis il y a aussi l’exportation en Word qui a été réalisé. 
+
 
