@@ -1,14 +1,3 @@
 asgiref==3.6.0
 Django==4.1.6
 sqlparse==0.4.3
-matplotlib
-pandas
-numpy
-seaborn
-nltk
-pdfkit
-xhtml2pdf
-wordcloud
-openpyxl
-docx
-pdf2docx

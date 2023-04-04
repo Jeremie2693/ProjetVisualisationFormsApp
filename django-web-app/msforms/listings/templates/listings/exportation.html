@@ -1,0 +1,129 @@
+{% extends 'listings/base.html' %}
+
+{% block content %}
+<h1>Exportations des résultats</h1>
+
+<p>
+    Veuillez choisir un format d'exportation : 
+</p>
+<form action="{% url 'exportation' %}" method="post">
+    {% csrf_token %}
+    <label for="export-format">Exporter en :</label>
+    <select id="export-format" name="export-format">
+      <option value="pdf">PDF</option>
+      <option value="word">Word</option>
+    </select>
+    <button type="button" id="download-btn" disabled onclick="previewGraphUrls()"  >
+      <a href="/analyse_erreur/?download=True&pdf=True"  style="text-decoration: none; color: black;">Télécharger</a>
+    </button>
+    <button type="button" onclick="previewGraphUrls()">Apercu</button>
+  </form>
+
+
+{% block extra_js %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    function previewGraphUrls() {
+        //on récupère les urls graph que l'on trie car il ne sont pas ordoné dans lS.
+        var graphUrls = [];
+        for (let key in localStorage) {
+          if (key.startsWith("graph_url_")) {
+            let url = localStorage.getItem(key);
+            let number = parseInt(key.slice(10));
+            graphUrls.push({url: url, number: number});
+          }
+        }
+
+        graphUrls.sort((a, b) => a.number - b.number);
+
+        let sortedUrls = graphUrls.map(item => item.url);
+
+        var exportFormat = $('#export-format').val();
+        var textes_commentaires = localStorage.getItem('session_textes_commentaires');
+
+        var csrf_token = $('input[name="csrfmiddlewaretoken"]').val();
+
+
+        $.ajax({
+            url: "{% url 'not-upload' %}",
+            type: 'POST',
+            headers: {
+                'X-CSRFToken': csrf_token,
+                'Content-Type': 'application/json'
+            },
+            data: JSON.stringify({
+                'graphUrls': sortedUrls,
+                'exportFormat': exportFormat,
+                'textes_commentaires':textes_commentaires,
+            }),
+            success: function(response) {
+                console.log(response);
+                // Do something with the response
+                //window.open(response.url, '_blank');
+
+                window.location.href = "{% url 'not-upload' %}";
+
+            },
+            error: function(error) {
+                console.log(error);
+                // Handle the error
+            }
+        });
+    }
+    
+</script>
+<script>
+  $(document).ready(function() {
+    var graph_url_bool;
+    for(let key in localStorage) {
+      if(key.startsWith("graph_url_")) {
+        graph_url_bool= true;
+        }
+    }
+    if (!graph_url_bool) {
+      $('#download-btn a').attr('href', '#');
+    } else {
+      $('#export-format').change(function() {
+        var selectedFormat = $('#export-format option:selected').val();
+        if (selectedFormat === 'pdf') {
+          $('#download-btn a').attr('href', '/analyse_erreur/?download=True&pdf=True');
+        } else if (selectedFormat === 'word') {
+          $('#download-btn a').attr('href', '/analyse_erreur/?download=True&word=True');
+        }
+        $('#download-btn').removeAttr('disabled');
+      });
+    }
+  });
+</script>
+
+<script>
+  var graph_url_bool;
+
+  for(let key in localStorage) {
+    if(key.startsWith("graph_url_")) {
+        graph_url_bool= true;
+        }
+      }
+  //console.log(graph_urls);
+  if (!graph_url_bool) {
+    var container = document.createElement("div");
+    container.setAttribute("class", "container");
+    container.setAttribute("style", "color: firebrick; margin-top: 20px");
+    var paragraph = document.createElement("p");
+    var text = document.createTextNode("Appuyer sur le bouton sauvegarder pour générer le rapport ou importer les données");
+    paragraph.appendChild(text);
+    container.appendChild(paragraph);
+    document.body.appendChild(container);
+
+
+  }
+</script>
+
+
+ 
+
+{% endblock %}
+{% endblock %}
+
+
+

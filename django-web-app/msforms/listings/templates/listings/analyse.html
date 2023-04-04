@@ -1,0 +1,380 @@
+{% extends 'listings/base.html' %}
+
+{% block content %}
+
+<h1>Analyse des résultats</h1>
+
+<p>{{ rows }} réponses / Temps de remplissage : {{avg_time}} minutes
+  <button onclick="saveSession()">Sauvegarder</button>
+</p>
+{% for index,column_number,column_name, bool_open in list_zip_columns%}
+
+<div id="paragrah-{{ column_number }}" class="bordure">
+    <h2>
+        Q{{ column_number  }}. {{ column_name }} 
+    </h2> 
+    <div id="contenu-{{ column_number }}">
+      <div class="row_container-{{ column_number }}" style="display: flex; justify-content: center; align-items: center;">
+        <div class="container{{ column_number }}" style="width: 70%; height: 50%; ">
+            {% if not bool_open %}
+            <canvas id="graph-{{ column_number }}"></canvas>
+            {% else %}
+            <canvas id="graph-{{ column_number }}" style="display: none;"></canvas>
+            <img src="../static/listings/images/wordcloud-{{index}}.jpeg" style="width: 885px; height: 442px; border-radius: 20px;">
+            {% endif %}
+          {% if not bool_open %}
+            <div id="type_graph-{{ column_number }}" >  
+                <label for="chart-select-{{ column_number }}">Choisir le type de graphique:</label>
+                <select id="chart-select-{{ column_number }}" onchange="updateChart(charts,'{{ column_number}}')">
+                  <option value="pie" selected>Diagramme circulaire</option>
+                  <option value="bar">Histogramme</option>
+                </select>
+                <button onclick="DownloadGraph('{{ column_number }}')">Télécharger</button>
+
+            </div>
+          {% else %}
+            <div>
+              <div id="type_graph-{{ column_number }}">  
+                <label for="chart-select-{{ column_number }}" style="display: none;">Choisir le type de graphique:</label>
+                <select id="chart-select-{{ column_number }}" onchange="updateChart(charts,'{{ column_number}}')" style="display: none;">
+                  <option value="pie" selected>Diagramme circulaire</option>
+                  <option value="bar">Histogramme</option>
+                </select>
+
+              </div>
+            </div>
+          {% endif %}
+
+        </div> 
+      </div>
+      <div>
+        <div id="comments-{{ column_number }}"> 
+          <label for="" style="margin-right: 10px;">Ajouter un commentaire:</label>
+          <button class="add_button" onclick="addParagraph('{{ column_number }}')">Ajouter un commentaire</button>
+        </div>  
+      </div>
+    </div>
+</div>
+{% endfor %}
+
+
+<script>
+  function updateChart(charts,column_number) {
+  var chartType = document.getElementById("chart-select-"+ column_number).value;
+  var current_canvas= document.getElementById("graph-"+ column_number);
+
+  var currentChart = charts[column_number - 1];
+  if (chartType === 'pie') {
+    currentChart = createChart(column_number, chartType);
+  } else if (chartType === 'bar') {
+    currentChart = createChart(column_number,chartType);
+  }
+  localStorage.setItem('chart-type-' + column_number, chartType);
+
+}
+//charts[column_number - 1].detroy();
+//charts.update();
+//charts[column_number - 1]=currentChart;
+</script>
+
+
+<script>
+function createChart(column_number, chartType) {
+
+var  URI;
+
+var graphCanvas = document.getElementById('graph-' + column_number).getContext("2d");
+
+var options = {
+  title: {
+    display: true,
+    text: 'Visualization',
+  },
+  tooltips: {
+    callbacks: {
+      label: function(tooltipItem, data) {
+        var dataset = data.datasets[tooltipItem.datasetIndex];
+        var total = dataset.data.reduce(function(previousValue, currentValue, currentIndex, array) {
+          return previousValue + currentValue;
+        });
+        var currentValue = dataset.data[tooltipItem.index];
+        var percentage = Math.floor(((currentValue / total) * 100) + 0.5);
+        return data.labels[tooltipItem.index] + ": " + currentValue + " (" + percentage + "%)";
+      }
+    }
+  },
+  hover: {
+    mode: null
+  },
+  plugins: {
+    datalabels: {
+      color: 'white',
+      formatter: function(value, context) {
+        var dataset = context.chart.data.datasets[context.datasetIndex];
+        var sum = dataset.data.reduce((a, b) => a + b, 0);
+        var percentage = Math.round((value / sum) * 100) + '%';
+        return percentage;
+      },
+      anchor: 'center',
+      align: 'center',
+      offset: -10,
+      font: {
+        weight: 'bold',
+        size: '14'
+      }
+    }
+  }
+};
+
+if (chartType === 'bar') {
+  options.scales = {
+    yAxes: [{
+      ticks: {
+        beginAtZero: true
+      }
+    }],
+    xAxes: [{
+      gridLines: {
+        display: true
+      }
+    }],
+    gridLines: {
+      display: true
+    }
+  };
+} else {
+  options.elements = {
+    arc: {
+      borderWidth: 0
+    }
+  };
+}
+
+let currentChart = new Chart(graphCanvas, {
+  type: chartType,
+  data: {
+    labels: {{ listkeys|safe }}[column_number - 1],
+    datasets: [{
+      label: "",
+      backgroundColor: colorArray,
+      data: {{ listvalues|safe }}[column_number - 1]
+    }]
+  },
+  options: options
+});
+  //localStorage.setItem(`graph-${column_number}`,currentChart );
+
+}
+
+</script>
+
+
+
+<script>
+  var colorArray = [
+  '#dd0453', '#fdfd05', '#66E64D', '#0660e7', '#9900B3',
+   '#d07201', '#14b300','#06d2a6','#f8061a','#c45850',
+  '#66664D', '#d6d6d7', '#76008f', '#4DB3FF', '#1AB399',
+  '#ec92d1', '#33991A', '#ba8383', '#B3B31A', '#00E680',
+  '#4D8066', '#809980', '#E6FF80', '#1AFF33', '#999933',
+  '#E64D66', '#4DB380', '#FF4D4D', '#99E6E6', '#6666FF'];
+
+var charts = []; 
+{% for index,column_number,column_name,bool_open in list_zip_columns%}
+  var chartType = document.getElementById("chart-select-"+ '{{ column_number}}').value;
+
+  if (chartType !== null && chartType !== "") {
+    console.log(chartType);
+    var chart = createChart('{{ column_number}}',chartType);
+    charts.push(chart); 
+
+  }
+  else{
+    console.log('nul')
+  }
+
+{% endfor %}
+
+console.log(charts);
+
+
+</script>
+
+
+<script>
+
+{% for index,column_number,column_name,bool_open in list_zip_columns%}
+
+  document.addEventListener("DOMContentLoaded", function() {
+
+    updateChart('{{ column_number}}');
+
+});
+{% endfor %}
+</script>
+
+<script>
+function addComment(columnNumber, commentText) {
+  const div = document.getElementById(`comments-${columnNumber}`);
+  
+  const p = document.createElement("p");
+  p.textContent = commentText;
+  p.id = `p-comments-${columnNumber}`;
+  div.appendChild(p);
+
+  const createButton = (text, onClick) => {
+    const button = document.createElement("button");
+    button.textContent = text;
+    button.onclick = onClick;
+    div.appendChild(button);
+    return button;
+  }
+
+  const editButton = createButton("Modifier", () => {
+    const textarea = document.createElement("textarea");
+    textarea.rows = 10;
+    textarea.cols = 50;
+    textarea.value = p.textContent;
+    p.textContent = "";
+    div.removeChild(editButton);
+    div.removeChild(deleteButton);
+    const editWrapper = document.createElement("div");
+    editWrapper.appendChild(textarea);
+    const saveButton = createButton("Sauvegarder", () => {
+      p.textContent = textarea.value;
+      div.removeChild(editWrapper);
+      div.appendChild(editButton);
+      div.appendChild(deleteButton);
+      localStorage.setItem(`comments-${columnNumber}`, textarea.value);
+    });
+    editWrapper.appendChild(saveButton);
+    div.appendChild(editWrapper);
+  });
+
+  const deleteButton = createButton("Supprimer", () => {
+    div.removeChild(p);
+    div.removeChild(editButton);
+    div.removeChild(deleteButton);
+    localStorage.removeItem(`comments-${columnNumber}`);
+  });
+}
+
+
+
+window.onload = function() {
+    var charts = [];
+  
+    // Loop through all the charts on the page
+    for (var i = 1; i <= {{ list_zip_columns|length }}; i++) {
+
+      // remettre le texte 
+      const commentText = localStorage.getItem(`comments-${i}`);
+      if (commentText) {
+        addComment(i, commentText);
+      }
+
+      // Get the chart canvas element
+      var canvas = document.getElementById('graph-' + i);
+  
+      // Get the saved chart type from session storage
+      var chartType = localStorage.getItem('chart-type-' + i);
+
+      // Create the chart with the saved chart type
+      var chart;
+      if (chartType == null | chartType == "") {
+        chartType='pie';
+        chart = createChart(i,'pie');
+
+      }else if (chartType === 'pie') {
+        chart = createChart(i, 'pie');
+      } else if (chartType === 'bar') {
+        chart = createChart(i, 'bar');
+      }
+
+      document.getElementById('chart-select-' + i).value = chartType;
+
+      // Add the chart to the charts array
+      charts.push(chart);
+    }
+  }
+  </script>
+
+</script>
+
+<script>
+
+function saveSession() {
+
+    var graph_urls=[];
+    //Partie save les graphiques 
+    var charts_canvas = document.querySelectorAll('canvas');
+    {% for index,column_number,column_name, bool_open in list_zip_columns%}
+      var graphCanvas = document.getElementById('graph-' + '{{ column_number}}');
+      URI = graphCanvas.toDataURL('image/png')
+      graph_urls.push(URI);
+
+      {% if not bool_open %}  
+        localStorage.setItem('graph_url_'+ '{{column_number}}', JSON.stringify(URI)); // stocker la liste des URLs dans le stockage local
+
+      {% else %}
+        localStorage.setItem('graph_url_'+ '{{column_number}}', JSON.stringify(" ")); 
+      {% endif %}
+
+    {% endfor %}
+
+  
+
+
+  var sessionData = [];
+  for (let i = 1; i <= charts_canvas.length; i++) {
+    var commentElement = document.getElementById('p-comments-' + i);
+    var comment = commentElement ? commentElement.textContent : ' ';
+    //sessionData["comments-" + i] = comment;
+    sessionData.push(comment);
+  }
+  console.log(sessionData);
+  localStorage.setItem("session_textes_commentaires", JSON.stringify(sessionData));
+
+
+
+}
+
+</script>
+
+<script>
+
+
+function DownloadGraph(column_number){
+    var graphCanvas = document.getElementById('graph-' + column_number);
+    var downloadLink = document.createElement("a");
+    downloadLink.innerHTML = "Télécharger le graphique " + column_number;
+    downloadLink.id = "Charts_URI_" + column_number; // Utiliser un ID unique pour chaque lien
+    /*
+    if (bool_graph_cloud){
+      downloadLink.href = graphCanvas.toDataURL('image/png').replace('image/png', 'image/octet-stream');
+    }
+    else {
+      column_number-=1;
+      downloadLink.href = "../static/listings/images/wordcloud-"+column_number+".jpeg"
+      column_number+=1;
+    }*/
+
+    downloadLink.href = graphCanvas.toDataURL('image/png').replace('image/png', 'image/octet-stream');
+    downloadLink.download = "graphique_" + column_number + ".png";
+    downloadLink.click();      
+
+}
+
+</script>
+
+{% endblock %}
+
+{% block messages %}
+    {% if messages %}
+        <div class="container" style="color: firebrick; margin-top: 20px" >
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}
