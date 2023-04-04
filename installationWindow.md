@@ -17,6 +17,34 @@ exemple :
 ```shell
 cd C:\Users\... (bien sur ce n'est pas ce path pour vous)
 ```
+##### =============
+Il est possible que vous ayez pas python installé sur votre ordinateur donc avant de faire ce qui suit vérifier :
+copier coller ce script 
+```shell
+python
+```
+Si un terminal python s'ouvre c'est gagné vous avez déjà installé python
+
+Installer Python 
+La commande va vous rediriger sur l'application de telechargement d'application de votre ordinateur
+```shell
+python
+```
+ou 
+Aller sur le site officiel de python et le télécharger : https://www.python.org/downloads/
+
+télécharger la version python 3.10. 
+
+refaite la commande pour voit si python est bien installé sur l'ordinateur
+```shell
+python
+```
+
+Pour sortir du terminal python :
+faite ctrl+z ou quit
+
+##### =============
+
 - Etape 5 :  créer l'environement copier coller ce script
 ```shell
 python -m venv env
