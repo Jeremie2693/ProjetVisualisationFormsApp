@@ -2,7 +2,7 @@
 
 ### Objectif du Projet : 
 L’outil est une application web développé en Django. 
-L’idée de l’application est de pouvoir générer automatiquement et dynamiquement une page de rapport Html et que l’on puisse ajouter du texte en dessus, et enfin l’exporter en PDF pu en Word. En ayant des données issues de Microsoft Forms,
+L’idée de l’application est de pouvoir générer automatiquement et dynamiquement un rapport PDF ou Word, d'un questionnaire Microsoft Forms. Ainsi l'outil génrère dynamique une page de rapport Html et que l’on peut ajouter des commentaires texte en dessous, et avant de pouvoir l’exporter en PDF ou en Word.
 
 ### I/ Fonctionnement générale du code :
 
@@ -29,13 +29,12 @@ Troisième partie concernant l’exportation du rapport, où l’on veut exporte
 
 <strong>En local :</strong>
 
-- Etape 1 : Ouverture du dossier projet. 
+- Etape 1 : Ouverture du dossier projet. Aller au dossier django-web-app.
 ![ouverture](images_readme/img1.png)
 
 Etape 2 : ouverture du terminal du dossier ( clic droit sur django-web-app + nouveau terminal du dossier )
 ![ouverture terminal](images_readme/img2.png)
 
- 
  note : important de se mettre dans le fichier django-web-app sinon le script en bas ne marche pas, si vous avez quelques 
  connaissances cela ne devraient pas vous poser de problèmes. 
  
@@ -96,6 +95,74 @@ choisir le format puis exporter , avec aperçu ou télécharger.
 <strong>Après déploiement :</strong>
 
 Après déploiement, il y a juste besoin d’aller sur la page web associer à l’application. Et utiliser l’application comme à l’étape utilisation.
+
+
+#### <strong>Installation version Window :</strong>
+
+- Etape 1 : téléchargement du projet sur Github puis déziper et placer ou vous le souhaiter.
+
+- Etape 2 : se placer dans le dossier  django-web-app, copier le chemin (exemple : Path =C:\Users\... )
+
+- Etape 3 : Ouvrir un terminal ou une invite de commande, taper invite de commande
+
+- Etape 4 :Tapez la commande suivante pour accéder au répertoire de l'environnement virtuel : copier-coller : cd + le Path
+exemple : 
+```shell
+cd C:\Users\... (bien sur ce n'est pas ce path pour vous)
+```
+- Etape 5 :  créer l'environement copier coller ce script
+```shell
+python -m venv env
+
+```
+- Etape 6 : activer l'environement copier coller ce script
+```shell
+env\Scripts\activate
+```
+- Etape 7 : Installer les requirements copier coller ce script
+```shell
+pip install --upgrade pip
+pip install -r requirements.txt
+
+```
+
+- Etape 8 : aller dans le bon dossier : copier coller ce script
+```shell
+cd msforms
+```
+
+- Etape 9 : Lancer le serveur copier coller ce script
+```shell
+python manage.py runserver
+```
+
+
+#### <strong>Lancer l'application sur Window :</strong>
+- Etape 1 : se placer dans le dossier  django-web-app, copier le chemin (exemple : Path =C:\Users\... )
+
+- Etape 2 : Ouvrir un terminal ou une invite de commande, taper invite de commande
+
+- Etape 3 :Tapez la commande suivante pour accéder au répertoire de l'environnement virtuel : copier-coller : cd + le Path
+exemple : 
+```shell
+cd C:\Users\... (bien sur ce n'est pas ce path pour vous)
+```
+- Etape 4 : activer l'environement copier coller ce script
+```shell
+env\Scripts\activate
+```
+- Etape 5 : aller dans le bon dossier : copier coller ce script
+```shell
+cd msforms
+```
+
+- Etape 6 : Lancer le serveur copier coller ce script
+```shell
+python manage.py runserver
+```
+- Etape 7 : aller sur la page :  port d’écoute + /importation/ ici cliquer sur l'url: http://127.0.0.1:8000/importation/
+
+![ouverture terminal](images_readme/img4.png)
 
 
 ### II/ Fonctionnement plus en détail du code :
