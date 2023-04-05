@@ -35,7 +35,7 @@ Aller sur le site officiel de python et le télécharger : https://www.python.or
 
 télécharger la version python 3.10. 
 
-refaite la commande pour voit si python est bien installé sur l'ordinateur
+refaite la commande pour voir si python est bien installé sur l'ordinateur
 ```shell
 python
 ```
