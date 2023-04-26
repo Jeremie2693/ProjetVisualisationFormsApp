@@ -2,7 +2,9 @@
 
 {% block content %}
 
-<h1>Analyse des résultats</h1>
+<h1>{{name_file}}</h1>
+
+<h2>Analyse des résultats</h2>
 
 <p>{{ rows }} réponses / Temps de remplissage : {{avg_time}} minutes
   <button onclick="saveSession()">Sauvegarder</button>

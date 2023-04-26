@@ -21,6 +21,7 @@ from django.template.loader import render_to_string
 #definition de la vue importation
 def importation(request):
     global file_directory
+    global name
 
     # Supprimer tous les fichiers d'un dossier
     def delete_files(directory):
@@ -59,6 +60,9 @@ def importation(request):
 
             # Lire le fichier
             readfile(file_directory)
+
+            #améliorer le nom
+            name=name.split('.xlsx')[0]
 
             # Rediriger vers la vue analyse
             return redirect('analyse')
@@ -146,6 +150,7 @@ def context_creation(file_directory):
                 'listkeys': listkeys,
                 'listvalues': listvalues,
                 'list_bool_open_question':list_bool_open_question,
+                'name_file':name
                   }
         return context
 
