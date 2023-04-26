@@ -62,7 +62,7 @@ def importation(request):
             readfile(file_directory)
 
             #améliorer le nom
-            name=name.split('.xlsx')[0]
+            name=name.split('(')[0]
 
             # Rediriger vers la vue analyse
             return redirect('analyse')
